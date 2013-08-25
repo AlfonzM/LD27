@@ -5,10 +5,10 @@ public class Level {
 	
 	static TiledMap map;
 	static boolean[][] solid;
-	static Door door1, door2;
+	static Door door1, door2, exit;
 	
 	public Level(int level) throws SlickException{
-		map = new TiledMap("res/levels/1.tmx");
+		map = new TiledMap("res/levels/"+level+".tmx");
 		solid = new boolean[map.getWidth()][map.getHeight()];
 		
 		for(int x = 0 ; x < map.getHeight(); x++){
@@ -31,6 +31,10 @@ public class Level {
 				case 4: // meds
 					Play.meds.add(new Pickable(y, x, "med"));
 					break;
+					
+				case 5: // elevator
+					exit = new Door(y-1, x-2);
+					break;					
 				
 				default:
 					break;

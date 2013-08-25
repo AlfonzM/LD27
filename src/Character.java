@@ -1,3 +1,4 @@
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -7,7 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Character {
-	static boolean facingRight;
+	static boolean facingRight, onGround;
 	static Point pos;
 	static float speed;
 	static float maxSpeed = 3, inertia = 0.2f, acceleration = 0.06f;
@@ -16,8 +17,10 @@ public class Character {
 	static Rectangle collisionBox;
 	static Image sprite;
 	
+	static int delta;
+	
 	public Character(int x, int y) throws SlickException{
-		pos = new Point(x, y);
+		pos = new Point(x * Play.TS, y * Play.TS);
 		move = new Vector2f(0, 0);
 		collisionBox = new Rectangle(pos.getX(), pos.getY(), 20, 40);
 		facingRight = true;
@@ -26,18 +29,35 @@ public class Character {
 	
 	public static void render(Graphics g){
 		g.drawString((int) pos.getX() + ", " + (int) pos.getY(), 10, 25);
-		g.drawImage(sprite, pos.getX(), pos.getY());
+//		g.drawImage(sprite, pos.getX(), pos.getY());
+		g.setColor(Color.black);
+		g.fillRect(pos.getX(), pos.getY(), collisionBox.getWidth(), collisionBox.getHeight());
 	}
 	
-	public static void update(Input input){
+	public static void update(Input input, int delta2) throws SlickException{
+		
+		delta = delta2;
+		
+		// left and right movement
 		if(input.isKeyDown(Input.KEY_RIGHT)){
-			move.x = speed;
-			
 			if(!facingRight) // stop on turn around
 				speed /= 4;
 			
-			if(speed <= maxSpeed)
-				speed += acceleration;
+			move.x = speed;
+			
+			int newX = (int) (pos.getX() + Play.TS + move.x)/Play.TS;
+			int newY = (int) ((pos.getY()) /Play.TS) + 1;
+			
+			if(!Level.solid[newX][newY] && !Level.solid[newX][newY + 1]){
+				if(speed <= maxSpeed)
+					speed += acceleration;
+			}
+			else{
+				pos.setX((newX-1)*Play.TS - 0.01f); // stick to right most empty block
+				// stop movement
+				speed = 0;
+				move.x = 0;
+			}
 			
 			facingRight = true;
 		}
@@ -47,12 +67,17 @@ public class Character {
 
 			move.x = -speed;
 			
-			if(!Level.solid[(int) ((pos.getX() + move.x)/Play.TS)][(int) (pos.getY()/Play.TS)] ||
-			   !Level.solid[(int) ((pos.getX() + move.x)/Play.TS)][(int) ((pos.getY() + sprite.getHeight())/Play.TS)]){
+			int newX = (int) (pos.getX() + move.x)/Play.TS;
+			int newY = (int) (pos.getY()/Play.TS) + 1;
+			
+			System.out.println(newY + ", " + (newY+1));
+			if(!Level.solid[newX][newY] && !Level.solid[newX][newY + 1]){
 				if(speed <= maxSpeed)
 					speed += acceleration;
 			}
 			else{
+				pos.setX((newX+1)*Play.TS); // stick to the left most solid block
+				// stop movement
 				speed = 0;
 				move.x = 0;
 			}
@@ -73,6 +98,13 @@ public class Character {
 			else
 				move.x = 0;
 		}
+		// end left and right movement
+		
+		// jump
+		if(input.isKeyDown(Input.KEY_SPACE)){
+			
+		}
+		// end jump
 		
 		// go up/down stairs
 		if(input.isKeyPressed(Input.KEY_UP)){
@@ -86,11 +118,17 @@ public class Character {
 			for(int i = 0 ; i < 6 && isInDoor == -1; i++){
 				Point temp1 = Level.door1.points.get(i);
 				Point temp2 = Level.door2.points.get(i);
-				if(temp1.getX() == centerX && temp1.getY() == centerY){ // collide with door1 tiles
+				if(temp1.getX() == centerX && temp1.getY() == centerY){ // inside door1 tiles
 					isInDoor = 1;
 				}
-				else if(temp2.getX() == centerX && temp2.getY() == centerY){
+				else if(temp2.getX() == centerX && temp2.getY() == centerY){ // inside door2 tiles
 					isInDoor = 2;
+				}
+				else{
+					Point exit = Level.exit.points.get(i);
+					if(exit.getX() == centerX && exit.getY() == centerY){ // inside exit tiles
+						isInDoor = 3;
+					}
 				}
 				
 			}
@@ -105,6 +143,10 @@ public class Character {
 				pos.setY((Level.door2.target.getY()+1) * Play.TS);
 				speed = 0;
 			}
+			else if(isInDoor == 3){
+				//exit
+				Play.initLevel();
+			}
 			
 		}
 
@@ -114,7 +156,7 @@ public class Character {
 	
 	public static void move(){
 		pos.setX(pos.getX() + move.x);
-		pos.setY(pos.getY() + move.y);
+//		pos.setY(pos.getY() + move.y);
 //		sprite.setX(pos.getX());
 //		sprite.setY(pos.getY());
 	}
@@ -134,13 +176,22 @@ public class Character {
 	
 	public static void checkCollisions(){
 		// gravity
-		if(!Level.solid[(int) pos.getX()/Play.TS][(int) pos.getY()/Play.TS + 2]){
-			if(move.y < 10)
-			move.y += 0.1f;
+		int newY = (int) ((pos.getY()+ getBounds().getHeight() + move.y*delta)/Play.TS);
+		
+		if(!Level.solid[(int) pos.getX()/Play.TS][newY] && !Level.solid[(int) pos.getX()/Play.TS + 1][newY]){
+			pos.setY(pos.getY() + move.y * delta);
+			move.y += 0.01f;
+			onGround = false;
 		}
 		else{
+			pos.setY((newY-2)*Play.TS - 0.001f);
 			move.y = 0;
+			onGround = true;
 		}
+		
+		System.out.println(onGround);
+		
+//		System.out.println(move.y);
 		
 //		// left
 //		if(move.x < 0){
