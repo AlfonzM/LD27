@@ -10,12 +10,14 @@ import org.newdawn.slick.geom.Vector2f;
 public class Character {
 	static boolean facingRight;
 	static boolean onGround, canJump, isJumping;
+	static int jumpFrames;
 	static Point pos;
 	static float speed;
 	
 	// constant values
 	static float maxSpeed = 3, inertia = 0.2f, acceleration = 0.06f;
-	static float gravity = 0.0009f, jumpCap = -0.35f, jumpSpeed = -0.06f;
+	static int jumpMaxFrames = 60;
+	static float gravity = 0.001f, jumpingGravity = 0.0005f, jumpSpeed = -0.27f;
 	
 	static Vector2f move;
 //	static Rectangle sprite;
@@ -33,6 +35,7 @@ public class Character {
 		
 		canJump = true;
 		isJumping = false;
+		jumpFrames = 0;
 	}
 	
 	public static void render(Graphics g){
@@ -107,19 +110,32 @@ public class Character {
 		}
 		// end left and right movement
 		
-		// jump
-		if(canJump){
-			if(input.isKeyDown(Input.KEY_SPACE)){
-				if(onGround)
-					move.y = -0.35f;
-				else{
-					canJump = false;
-				}
+		// jump		
+		if(input.isKeyPressed(Input.KEY_SPACE)){
+			if(!isJumping && onGround){
+				move.y = jumpSpeed;
+				isJumping = true;
+				gravity = jumpingGravity;
+				jumpFrames = 0;
 			}
 		}
-		if(!canJump){
-			if(onGround)
-				canJump = true;
+		
+		System.out.println(gravity);
+		
+		if(isJumping){
+			if(input.isKeyDown(Input.KEY_SPACE)){
+				if(jumpFrames < jumpMaxFrames){
+					jumpFrames++;
+				}
+				else{
+					isJumping = false;
+					gravity = 0.001f;
+				}
+			}
+			else{
+				isJumping = false;
+				gravity = 0.001f;
+			}
 		}
 		
 		
@@ -208,15 +224,12 @@ public class Character {
 		
 		if(!Level.solid[(int) pos.getX()/Play.TS][newY] && !Level.solid[(int) pos.getX()/Play.TS + 1][newY]){
 			pos.setY(pos.getY() + move.y * delta);
-			System.out.println(move.y * delta);
 			move.y += gravity * delta;
 			onGround = false;
-			canJump = false;
 		}
-		else{
+		else{ // on ground
 			pos.setY((newY-2)*Play.TS - 0.001f);
 			move.y = 0;
-			canJump = true;
 			onGround = true;
 		}
 		

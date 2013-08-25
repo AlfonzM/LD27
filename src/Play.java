@@ -17,6 +17,7 @@ public class Play extends BasicGameState{
 	public static int TS = 20;
 	public static int timer;
 	static ArrayList<Pickable> meds;
+	static ArrayList<Enemy> mobs;
 	
 	// fonts
 	AngelCodeFont font40, font24, font8, font16;
@@ -35,6 +36,7 @@ public class Play extends BasicGameState{
 	public static void initLevel() throws SlickException{
 		// game objects
 		meds = new ArrayList<Pickable>();
+		mobs = new ArrayList<Enemy>();
 		
 		new Character(2, 15);
 		new Level(++level);
@@ -66,6 +68,11 @@ public class Play extends BasicGameState{
 			g.drawAnimation(p.animation, p.pos.getX(), p.pos.getY());
 		}
 		
+		// render mobs
+		for(int i = 0 ; i < mobs.size(); i ++){
+			mobs.get(i).render(g);
+		}
+		
 		// render player
 		Character.render(g);
 	}
@@ -74,6 +81,11 @@ public class Play extends BasicGameState{
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		Input input = gc.getInput();
 		Character.update(input, delta);
+
+		for (Iterator<Enemy> iterator = mobs.iterator(); iterator.hasNext(); ) {
+			Enemy e = iterator.next();
+			e.update(delta);
+		}
 		
 		// check collisions
 		checkCollisions();
