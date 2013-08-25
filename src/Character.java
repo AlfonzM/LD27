@@ -8,10 +8,15 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Character {
-	static boolean facingRight, onGround;
+	static boolean facingRight;
+	static boolean onGround, canJump, isJumping;
 	static Point pos;
 	static float speed;
+	
+	// constant values
 	static float maxSpeed = 3, inertia = 0.2f, acceleration = 0.06f;
+	static float gravity = 0.0009f, jumpCap = -0.35f, jumpSpeed = -0.06f;
+	
 	static Vector2f move;
 //	static Rectangle sprite;
 	static Rectangle collisionBox;
@@ -25,6 +30,9 @@ public class Character {
 		collisionBox = new Rectangle(pos.getX(), pos.getY(), 20, 40);
 		facingRight = true;
 		sprite = new Image("res/sprite.png");
+		
+		canJump = true;
+		isJumping = false;
 	}
 	
 	public static void render(Graphics g){
@@ -70,7 +78,6 @@ public class Character {
 			int newX = (int) (pos.getX() + move.x)/Play.TS;
 			int newY = (int) (pos.getY()/Play.TS) + 1;
 			
-			System.out.println(newY + ", " + (newY+1));
 			if(!Level.solid[newX][newY] && !Level.solid[newX][newY + 1]){
 				if(speed <= maxSpeed)
 					speed += acceleration;
@@ -101,9 +108,30 @@ public class Character {
 		// end left and right movement
 		
 		// jump
-		if(input.isKeyDown(Input.KEY_SPACE)){
-			
+		if(canJump){
+			if(input.isKeyDown(Input.KEY_SPACE)){
+				if(onGround)
+					move.y = -0.35f;
+				else{
+					canJump = false;
+				}
+			}
 		}
+		if(!canJump){
+			if(onGround)
+				canJump = true;
+		}
+		
+		
+//		if(input.isKeyDown(Input.KEY_SPACE)){
+//			if(canJump && move.y > -0.2f)
+//				move.y -= 0.07f;
+//			
+//			if(move.y >= 0.3f)
+//				canJump = false;
+//		}
+		
+//		System.out.println(move.y);
 		// end jump
 		
 		// go up/down stairs
@@ -180,16 +208,17 @@ public class Character {
 		
 		if(!Level.solid[(int) pos.getX()/Play.TS][newY] && !Level.solid[(int) pos.getX()/Play.TS + 1][newY]){
 			pos.setY(pos.getY() + move.y * delta);
-			move.y += 0.01f;
+			System.out.println(move.y * delta);
+			move.y += gravity * delta;
 			onGround = false;
+			canJump = false;
 		}
 		else{
 			pos.setY((newY-2)*Play.TS - 0.001f);
 			move.y = 0;
+			canJump = true;
 			onGround = true;
 		}
-		
-		System.out.println(onGround);
 		
 //		System.out.println(move.y);
 		

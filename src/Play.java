@@ -58,7 +58,7 @@ public class Play extends BasicGameState{
 		}
 		
 		// render GUI (timer)
-		font16.drawString(Character.pos.getX(), Character.pos.getY() - 30, ""+ (timer/1000) + "." + ((timer%1000)/100), timerColor);
+		font16.drawString(Character.pos.getX(), Character.pos.getY() - 30, ""+ (timer/1000) + "." + ((timer%1000)/100) + ((timer%100)/10), timerColor);
 		
 		// render meds
 		for(int i = 0; i < meds.size(); i++ ){
@@ -82,7 +82,7 @@ public class Play extends BasicGameState{
 			init(gc, sbg);
 		}
 		
-//		timer -= delta;
+		timer -= delta;
 		if(timer < -2)
 			init(gc, sbg);
 	}
