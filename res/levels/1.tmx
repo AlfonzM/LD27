@@ -3,14 +3,32 @@
  <tileset firstgid="1" name="tiles" tilewidth="20" tileheight="20">
   <image source="../tiles.png" width="100" height="100"/>
  </tileset>
- <layer name="Tile Layer 1" width="50" height="30">
+ <tileset firstgid="26" name="tileset" tilewidth="20" tileheight="20">
+  <image source="../tileset.png" width="440" height="360"/>
+ </tileset>
+ <layer name="bg" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3Xyw6AIAxEUfAR//+P3dSFBgyWlqq5J5kdQQeJaEoAAMDCLBlllRwWo3mje1iJ7JHJqwIAo/DOKdskX/e0h3Y/eJ1ffzkfvXqMXh/N9Wrjc2XM3byTpJdXj1baHtd/p5Yepfu12i+9zyP6e5ucswOQrGNAcBcAAA==
+   H4sIAAAAAAAAC+3DQQ0AAAwDoRNS/zonYl9IWDVVVVVVVfX1AKt1iuZwFwAA
   </data>
  </layer>
- <layer name="Tile Layer 2" width="50" height="30" visible="0">
+ <layer name="bg2" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XMQ0AAAgEsR/wrxkVhEBaBbdeAgB8UNsBAAAAB3gnJjXXEK9ScBcAAA==
+   H4sIAAAAAAAAC+3WQQkAAAgAMXPYP6gFfAqKbHAdLgIAgEn5JAAA6Gx/qt/lsgJNVetbcBcAAA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2XwQoAEBQEn+Ij/P+POjsoQrs0U3sTb+KwUkQkYhMAAIDXyeoBBBT1AAN+6Re7Hup+R+70Xd63F3h4gYcXeHiBx91z6sSaE/+F1T1+v3d1vyN9Gj4fswxwFwAA
+  </data>
+ </layer>
+ <layer name="decor back" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2XSy5EQRSGq4ZsgfSAbiMhjLyGhDWgtfRDMCTEKxgSwgSLYg2ENbAAn6QqudKn1E1ubndFzpd8qVMnXdV10pO/K8aYipqMiqIoipKHKtZwzO2HrDHDNrymyhzO44LbT/HWaRteszRwM3L/OtZxgrOTmfNV6ho2qVsF3u/v3abewV3XX6a3YsNrlgM8jHzPHu7jImeXhN/zCI+Fc8/4kmMOf+859QVeun6d3oYNr55x6hvWW1eHuMJrXOUza8Ln7vBeOPeOHznm8Pc+UD/ik+v3O9+p5eTd/5KfdY600DnSQudIi9gcIzjao7cUITbHDM726C1FiM3hc67PvX/hM7PEK76Z7jz9Q5t9B7dK/L8RyrkSPjNLfOKXkfP0CftTPCtxjlDOlfCZWcrVA/QGbXee7ne+U3/7DUAZtjhwFwAA
+  </data>
+ </layer>
+ <layer name="decor front" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQhfoAAAAAAAgNcAxA3c/HAXAAA=
   </data>
  </layer>
 </map>

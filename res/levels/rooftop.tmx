@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="30" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="tiles" tilewidth="20" tileheight="20">
+  <image source="../tiles.png" width="100" height="100"/>
+ </tileset>
+ <tileset firstgid="26" name="tileset" tilewidth="20" tileheight="20">
+  <image source="../tileset.png" width="440" height="360"/>
+ </tileset>
+ <tileset firstgid="422" name="roof_tileset" tilewidth="20" tileheight="20">
+  <image source="../roof_tileset.png" width="160" height="180"/>
+ </tileset>
+ <layer name="bg" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DQQ0AAAwDoRNS/zonYl9IWDVVVVVVVfX1AKt1iuZwFwAA
+  </data>
+ </layer>
+ <layer name="bg2" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAwDoM6/k6qsiL2Q0Euqqqqqqqq+Dm7jhNRwFwAA
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3P2w2AMAwDwGQIqDoDsP96ZIioPHQn+dt2BADAu8zFfVtG7JWRi4ubHbX/rFxNP/LhdPnDBwAA4BtudNiIYnAXAAA=
+  </data>
+ </layer>
+ <layer name="decor back" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2Uyw3CQAxE7TqgCWgCmoAzUARQBFACn4b4XPh0kslhpWjXFmy0GxLwSCMfbK/mSYmJTCbTP+jMRBf4Ct/422nq647sD/gJvzrKceL3Pgpum4yjXSpzzlDn8IK6zbFEXcFrSsdRvYFN3MMy5wZ1C+8SclRvYBP3cM9pfYh0WzliWFLqk3sVa+k7zH0rjMM4jOP3OXp4r89hdZm0vj8ncWg7OTgGeG/IYXWZtL4/J3FoOzk4RnhvzGF1mbS+PydxaDs5OCZ4b8phdZm0vj8ncWg79p8bh3EYRx0VTkuewnAXAAA=
+  </data>
+ </layer>
+ <layer name="decor front" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3POwqAMBAE0OQqnsI7a6f4QfGD4gfttPQwTpHCNCJYmMR5MOzCNjtCEBG5J5BChPLrL96L0CF2oEeBDqUDPTp06C3p4d38ueC2qnuCmSIZclz23JCe/s0fG267uleYNdJIfW8N6fHUgH9HZJL6PlvWg4iIiIiI6K9OwjL3yHAXAAA=
+  </data>
+ </layer>
+</map>

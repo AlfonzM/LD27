@@ -3,14 +3,32 @@
  <tileset firstgid="1" name="tiles" tilewidth="20" tileheight="20">
   <image source="../tiles.png" width="100" height="100"/>
  </tileset>
- <layer name="Tile Layer 1" width="50" height="30">
+ <tileset firstgid="26" name="tileset" tilewidth="20" tileheight="20">
+  <image source="../tileset.png" width="440" height="360"/>
+ </tileset>
+ <layer name="bg" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WIQ4AIQxFQWDZ+18ZU8QmCBRLk5nkuZrvWgoAsPJGu57oNhl29I2bDDumqqsCAMiiRdnZcdbf/7a+DQKB5wtwFwAA
+   H4sIAAAAAAAAC+3DQQ0AAAwDoRNS/zonYl9IWDVVVVVVVfX1AKt1iuZwFwAA
   </data>
  </layer>
- <layer name="Tile Layer 2" width="50" height="30" visible="0">
+ <layer name="bg2" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XMQ0AAAgEsR/wrxkVhEBaBbdeAgB8UNsBAAAAB3gnJjXXEK9ScBcAAA==
+   H4sIAAAAAAAAC+3WQQkAAAgAMXPYP6gFfAqKbHAdLgIAgEn5JAAA6Gx/qt/lsgJNVetbcBcAAA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WQQoAIAhEUYU6RPe/aOsWFUE4Cv/BbENBaNzMnKQJAABRmnqAg64eAFeVOo2635G8twEASpm7GOpS/7fj0zvqPXZee07UHup+R9ZMAeX5Z3AXAAA=
+  </data>
+ </layer>
+ <layer name="decor back" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2Wz0pCQRSHZ5b6CoWL0G1RKx+g0GfIbkVtyqVR6EZdGkZtyjfrf/YCmfbvAfqEe2EY7sxIUSqcDz7OYbgz59zdL6eUyokzoyAIgiDMCgtaqUXtrn/JAR5i9Yf3d3A37lfZdU27q4stjDwzlri7R93HPH0h5a0mtrBtnF3jDd7iHd7jAz7ik3X/GE/ivsT7Ze2uLmp45PmPInfr1Ibnm0u8wp5x9oIDfMUhjvAN3/HDut/Fs7iPmLet3dVFB089O445x4uU82nnO1HyriAIgjCfhPLwf+TiEMvMXzF26OOz9U0oD6fl4iTfJnn3t4Qy8DqzNowdPvHLeiOUh325OJR3JyWUgTeZXzF2yNBnrZ1CediXiyXvzoff0RQ7wnAXAAA=
+  </data>
+ </layer>
+ <layer name="decor front" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQhfoAAAAAAAgNcAxA3c/HAXAAA=
   </data>
  </layer>
 </map>

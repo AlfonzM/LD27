@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="30" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="tiles" tilewidth="20" tileheight="20">
+  <image source="../tiles.png" width="100" height="100"/>
+ </tileset>
+ <tileset firstgid="26" name="tileset" tilewidth="20" tileheight="20">
+  <image source="../tileset.png" width="440" height="360"/>
+ </tileset>
+ <layer name="bg" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DQQ0AAAwDoRNS/zonYl9IWDVVVVVVVfX1AKt1iuZwFwAA
+  </data>
+ </layer>
+ <layer name="bg2" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WQQkAAAgAMXPYP6gFfAqKbHAdLgIAgEn5JAAA6Gx/qt/lsgJNVetbcBcAAA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XOwoAIQxF0Qi6CPe/0akVLdT8GO6BVwkTU82ziEghaQIA2dXoC+D3msOMDP9djTtY7XHyXcs9XntTdK8j9F0AALTddCEvfTF7N/+kI8znnm9Syz00Rfc7MuYDXt2WbXAXAAA=
+  </data>
+ </layer>
+ <layer name="decor back" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Wyy4EQRTG8e4lr0BmIeyEsPIAhGfAIG7BkhC3YEkIGzwUQUjGnRCExP2ywcbfotLlpKrSmc1I5nzJL1XVXV19ulcnE0VRRv0bGo1Go9EUewYwiCFUxOme6URXYC1zhvN8irPSjR5UUmOVo84ZzGIODY77G9gU10YxFljLvOPDcT2HfRzgEEc4xglOxd5xTARqW8Ua1j01XOBSXFvEUmAtU8L/KUW1+E/3eMAjnvCMF7ziTZyxjBVPbYXu75T2uxqNRqMpvpTR15THySjTjmwe525hGzsp9qbpeU0va3rbGua1Vr11zOvjZJQZxojj3F729qHf089f4Ro32MVeoEZfz+uK6W0beW+T9e5m5i1xMtr57UHnGRcc501ybwrTnu/4xBe+cYu7QG2m500T09u2sr/NeibLvCNORpNC93fqrx+x/HvkcBcAAA==
+  </data>
+ </layer>
+ <layer name="decor front" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQhfoAAAAAAAgNcAxA3c/HAXAAA=
+  </data>
+ </layer>
+</map>
